@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 2</title>
+</head>
+
+<body>
+
+    <script task_1>
+		var a = 1, b = 1, c, d;
+		c = ++a; alert(c);           // 2 префиксная форма унарного оператора ++ увеличивает переменную на 1 (сначала инкрементирование, затем возврат) сейчас a = 2
+		d = b++; alert(d);           // 1 постфиксная форма унарного оператора ++ увеличивает переменную на 1 (сначала возврат, затем инкрементирование) сейчас b = 2
+		c = (2+ ++a); alert(c);      // 5 (2+ (a=2+1)) = 5 
+		d = (2+ b++); alert(d);      // 4 (2+ (b=2)) = 4 b=3
+		alert(a);                    // 3 соответственно a = 3
+		alert(b);                    // 3 b=3
+    </script>
+
+    <script task_2>
+		var a = 2;					
+		var x = 1 + (a *= 2);		// выражение a *=2 можно рассмотреть как a = a*2, т.е. a = 4, x = 1+4
+		alert(x);
+    </script>
+
+	<script task_3>
+		var a = prompt('Введите первое целочисленное значение'),
+			b = prompt('Введите второе целочисленное значение');
+		if (a > 0 && b > 0){
+			if (a > b) {
+			x = a - b;
+			}
+			else {
+			x = b - a;
+			}
+		alert(x);
+		} else if (a < 0 && b < 0){
+			x = a * b;
+			alert (x);
+			}
+		  else if (a > 0 && b < 0 || a < 0 && b > 0) {
+		  x = a + b;
+		  alert (x);
+		  }
+	</script>
+
+	<script task_4>
+		a = parseInt(prompt ('Введите число от 1 до 15'));
+		switch (a) {
+		case 0:
+			alert(0);
+		case 1:
+			alert(1);
+		case 2:
+			alert(2);
+		case 3:
+			alert(3);
+		case 4:
+			alert(4);
+		case 5:
+			alert(5);
+		case 6:
+			alert(6);
+		case 7:
+			alert(7);
+		case 8:
+			alert(8);
+		case 9:
+			alert(9);
+		case 10:
+			alert(10);
+		case 11:
+			alert(11);
+		case 12:
+			alert(12);
+		case 13:
+			alert(13);
+		case 14:
+			alert(14);
+		case 15:
+			alert(15);
+			break;
+		default:
+			console.log('Ошибка ввода данных.');
+			break;
+	   }
+	</script>
+
+	<script task_5_6>
+		function mathOperation(arg1, arg2, operation){
+			switch (operation) {
+			case 1:
+				summ_ = summ(arg1, arg2);
+				alert(summ_);
+				break;
+			case 2:
+				diff_ = diff(arg1, arg2);
+				alert(diff_);
+				break;    
+			case 3:
+				multy_ = multy(arg1, arg2);
+				alert(multy_);
+				break;
+			case 4:
+				div_ = div (arg1, arg2);
+				alert(div_);
+				break;
+			}
+		}
+		function summ(a, b) {
+    		return a + b;
+		}
+		function diff(a, b) {
+    		return a - b;
+		}
+		function multy (a, b) {
+    		return a * b;
+		}
+		function div (a, b) {
+    		return a / b;
+		}
+//		alert(summ(25, 30));
+//		alert(diff(45, 30));
+//		alert(multy(50, 3));
+//		alert(div(60, 3));
+		arg1 = parseInt(prompt('Введите arg1'));
+		arg2 = parseInt(prompt('Введите arg2'));
+		operation = parseInt(prompt('Введите operation'));
+		alert(mathOperation(arg1, arg2, operation));
+	</script>	
+</body>
+
+</html>
