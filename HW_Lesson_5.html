@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Lesson 5</title>
+</head>
+
+<script> // Шахматная доска
+
+	window.onload = addElement;
+
+	function addElement() {
+		let newTable = document.createElement("table");
+		for (let i = 1; i < 9; i++) {
+			let newTr = document.createElement('tr');
+			for (let j = 1; j < 9; j++) {
+				let newTd = document.createElement('td');
+				if (i % 2 == j % 2) {
+					newTd.className = "white";
+				} else {
+					newTd.className = "black";
+				}
+				newTr.appendChild(newTd);
+			}
+			newTable.appendChild(newTr);
+		}
+		document.body.appendChild(newTable);
+		let i = 0;
+		for (i = 0; i < document.getElementsByClassName("black").length; i++) {
+			document.getElementsByClassName("black")[i].style.backgroundColor = "black";
+		}
+		for (i = 0; i < document.getElementsByClassName("white").length; i++) {
+			document.getElementsByClassName("white")[i].style.backgroundColor = "white";
+		}
+		for (i = 0; i < document.getElementsByTagName("td").length; i++) {
+			document.getElementsByTagName("td")[i].style.width = "25px";
+			document.getElementsByTagName("td")[i].style.height = "25px";
+		}
+
+	}
+</script>
+
+<div class="dynamic">
+
+</div>
+
+<script>
+
+	const dynamic = document.querySelector('#dynamic');
+
+	let shoppingCart = []
+	let emptyBasket = '<p>Ваша корзина пуста</p>'
+
+	function Item(product, price, quantity) {
+		this.product = product;
+		this.price = price;
+		this.quantity = quantity
+	}
+
+	shoppingCart.push(
+		new Item('product_name_1', 95, 2)
+	);
+	shoppingCart.push(
+		new Item('product_name_2', 17, 5)
+	);
+	shoppingCart.push(
+		new Item('product_name_3', 15, 6)
+	);
+	shoppingCart.push(
+		new Item('product_name_4', 32, 1)
+	);
+	shoppingCart.push(
+		new Item('product_name_5', 22, 3)
+	);
+
+	// выводим перечень товаров в корзине, если корзина не пуста
+	if (shoppingCart == 0) {
+		dynamic.insertAdjacentHTML('beforeend', `<div class="prod_item total">${emptyBasket}</div>`);
+	} else {
+		for (const iterator of shoppingCart) {
+			dynamic.insertAdjacentHTML('beforeend', `<div class="prod_item"> <span>Товар - ${iterator.product}</span> 
+				<span>Цена товара - ${iterator.price} руб</span>
+				<span>Количество - ${iterator.quantity}</span>
+        </div>`);
+		}
+	}
+
+	// возвращает итоговую сумму
+	function finalChart(shoppingCart) {
+		return shoppingCart.reduce(function (acc, shoppingCart) {
+			return acc + shoppingCart.quantity
+		}, 0)
+	};
+
+	// возвращает итоговое количество
+	function finalCost(shoppingCart) {
+		return shoppingCart.reduce(function (acc, shoppingCart) {
+			return acc + (shoppingCart.price * shoppingCart.quantity)
+		}, 0)
+	};
+
+	// выводим итоговое количество и сумму
+	if (shoppingCart != 0) {
+		const totalPrice = dynamic.insertAdjacentHTML('beforeend',
+			`<hr><div class="prod_item total">В корзине: ${finalChart(shoppingCart)} товаров на сумму 
+    ${finalCost(shoppingCart)} рублей</div>`);
+	}
+
+</script>
+
+</body>
+
+</html>
