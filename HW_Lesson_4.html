@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Lesson 4</title>
+</head>
+
+<body>
+
+	<script task_1>
+		let digit = {
+			number: +prompt('Введите число от 0 до 999'),
+			units: 0,
+			tens: 0,
+			hundreds: 0,
+		};
+		if (digit.number <= 9) {
+			digit.units = digit.number;
+		} else if (digit.number <= 999) {
+			digit.units = Math.floor(digit.number % 10);
+			digit.tens = Math.floor(digit.number / 10 % 10);
+			digit.hundreds = Math.floor(digit.number / 100 % 10);
+		}
+		console.log(digit);
+	</script>
+
+	<script task_2>
+
+		let product_1 = ['id_15155', 125, 30];
+		product_2 = ['id_13189', 300, 50];
+		product_3 = ['id_14151', 450, 45];
+		let basket = {
+			product_1: 10,
+			product_2: 5,
+			product_3: 8
+		};
+		price_basket() {
+
+		}
+
+		basket.price_basket();
+
+
+	</script>
+
+	<script task_3>
+
+	</script>
+
+</body>
+
+</html>
