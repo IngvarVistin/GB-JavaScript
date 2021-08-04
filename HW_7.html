@@ -61,16 +61,6 @@
         .disabled:hover {
             background: #7c7c7c;
         }
-
-        #score {
-            background: #009641;
-            width: 150px;
-            padding: 15px;
-            margin: auto;
-            color: white;
-            text-align: center;
-            cursor: pointer;
-        }
     </style>
 </head>
 
@@ -81,6 +71,7 @@
     <div id="menu">
         <div id="playButton" class="menuButton">Старт</div>
         <div id="newGameButton" class="menuButton">Новая игра</div>
+        <div id="score" class="menuButton"></div>
     </div>
 
     <script>
@@ -251,26 +242,37 @@
         const food = {      //ЕДА
             x: null,
             y: null,
-            score: 0,   // счётчик еды по нолям
+            scoreFood: 0,
 
             getCoordinates() {
                 return {
                     x: this.x,
                     y: this.y,
-                    score: this.score,
+                    scoreFood: this.scoreFood
                 };
             },
 
             setCoordinates(point) {
                 this.x = point.x;
                 this.y = point.y;
-                this.score += 1;
+
             },
 
             isOnPoint(point) {
                 return this.x === point.x && this.y === point.y; // проверка, совпадает ли координата еды с координатами змеи
             },
+
+            setScoreFood(point) {                                       // счётчик съеденой пищи ???
+                if (this.x === point.x && this.y === point.y) {
+                    return scoreFood += 1;
+                }
+
+            }
+
         };
+
+        const $ScoreFood = document.querySelector('#ScoreFood');
+        score.insertAdjacentHTML('beforeend', `Счёт: ${food.scoreFood}`);
 
         const status = { // управление состоянием игры
             condition: null,
@@ -315,7 +317,7 @@
                     return;
                 }
 
-                this.map.init(this.config.getRowsCount(), this.config.getColsCount());
+                this.map.init(this.config.getRowsCount(), this.config.getColsCount()); //инициализация игровой зоны
                 this.setEventHandlers();
                 this.reset();
             },
@@ -390,7 +392,7 @@
             },
 
             getRandomFreeCoordinates() {
-                const exclude = [this.food.getCoordinates(), ...this.snake.getBody()];
+                const exclude = [this.food.getCoordinates(), this.snake.getBody()];
 
                 while (true) {
                     const rndPoint = {
@@ -414,6 +416,7 @@
                 this.status.setStopped();
                 clearInterval(this.tickInterval);
                 this.setPlayButton('Старт');
+                this.food.score = 0;
             },
 
             finish() {
@@ -421,6 +424,8 @@
                 clearInterval(this.tickInterval);
                 this.setPlayButton('Игра закончена', true);
             },
+
+
 
             tickHandler() {
                 if (!this.canMakeStep()) return this.finish();
@@ -466,7 +471,7 @@
         game.init();
 
     </script>
-    <div id="score"> Съедено еды: </div>
+
 </body>
 
 </html>
